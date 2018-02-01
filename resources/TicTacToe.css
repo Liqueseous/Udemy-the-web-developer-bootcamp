@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+.board {
+  margin: auto;
+  width: auto;
+}
+.board td {
+  width: 100px;
+  height: 100px;
+}
+.board tr:nth-of-type(2) td{
+  border-top: solid black 2px;
+  border-bottom: solid black 2px;
+}
+.board tr td:nth-of-type(2){
+  border-left: solid black 2px;
+  border-right: solid black 2px;
+}
