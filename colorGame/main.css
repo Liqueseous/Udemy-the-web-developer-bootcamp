@@ -1,1 +1,32 @@
 /* Color Game Css File */
+body {
+  background-color: #232323;
+}
+
+h1 {
+  color: #fff;
+}
+
+.square {
+  width: 30%;
+  background-color: purple;
+  padding-bottom: 30%;
+  float: left;
+  margin: 1.66%;
+}
+
+.selected {
+  background-color: blue;
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+#stripe {
+  background-color: #fff;
+  height: 30px;
+  width: 100%;
+  text-align: center; 
+}
