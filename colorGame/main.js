@@ -1,67 +1,110 @@
 // Color Game Javascript file
-var colors = generateRandomColors(6);
-var easyBtn = $("#easyBtn");
-var hardBtn = $("#hardBtn");
-var pickedColor = colorPicker();
-var clicked = null;
+// How many squares we have
+var numSquares = 6;
+// Array of Colors
+var colors = [];
+// color that is picked
+var pickedColor;
+// Color that was clicked by user
+var clicked;
 
-$("#colorDisplay").text(pickedColor);
+// Initialize the game
+init();
 
-updateSquares();
+// Initialize function
+function init() {
+  // square button listener
+  squareBtnInit();
+  // reset button listener
+  resetBtnInit();
+  // mode button listener
+  modeBtnInit();
+  // update game
+  reset();
+};
 
-$(".square").click(function () {
-  clicked = colors[$(".square").index(this)];
+function squareBtnInit() {
+  // Click on a Square
+  $(".square").click(function () {
+    clicked = colors[$(".square").index(this)];
+    // if the clicked color is the correct color
+    if (clicked === pickedColor) {
+      $("#message").text("Correct!");
+      changeColors(clicked);
+      $("#resetBtn").text("Play Again?");
+      // Change Banner Color
+      $("h1").css("background-color", clicked);
+    } else {
+      $(this).css("background-color", "#232323");
+      $("#message").text("Try Again");
+    }
+  });
+};
 
-  if (clicked === pickedColor) {
-    $("#message").text("Correct!");
-    changeColors(clicked);
-    $("#reset").text("Play Again?");
-    // Change Banner Color
-    $("h1").css("background-color", clicked);
-  } else {
-    $(this).css("background-color", "#232323");
-    $("#message").text("Try Again");
-  }
-});
+function resetBtnInit() {
+  // Reset Colors button
+  $("#resetBtn").click(function () {
+    reset();
+  });
+};
 
-$("#resetBtn").click(function() {
+function modeBtnInit() {
+  // Mode Button Click
+  $(".mode").each(function (i) {
+    $(this).click(function () {
+      $(".mode").each(function (j) {
+        $(this).removeClass("selected");
+      });
+      $(this).addClass("selected");
+      $(this).text() === "Easy" ? numSquares = 3 : numSquares = 6;
+      reset();
+    });
+  });
+}
+
+// Reset squares
+function reset() {
   // generate all new colors
-  colors = generateRandomColors(6);
+  colors = generateRandomColors(numSquares);
   // pick new random color
   pickedColor = colorPicker();
   // change color display to match picked color
   $("#colorDisplay").text(pickedColor);
   // change color of squares
   updateSquares();
-  $("h1").css("background-color", "#232323");
-});
+  $("h1").css("background-color", "steelblue");
+  $("#message").text("");
+  $("#resetBtn").text("New Colors");
+  $(".square").each(function (i) {
+    if (colors[i]) {
+      $(this).css("display", "block");
+      $(this).css("background-color", colors[i]);
+    } else {
+      $(this).css("display", "none");
+    };
+  });
+};
 
-easyBtn.click(function() {
-  hardBtn.removeClass("selected");
-  easyBtn.addClass("selected");
-});
-
-hardBtn.click(function() {
-  easyBtn.removeClass("selected");
-  hardBtn.addClass("selected");
-});
-
+// update squares
 function updateSquares() {
   $(".square").each(function (i) {
     $(this).css("background-color", colors[i]);
   });
 }
 
+// if we win change all squares to the correct color
 function changeColors(color) {
   $(".square").each(function (index) {
     $(this).css("background-color", color);
   });
 };
 
+// pick a random color to be our winner
 function colorPicker() {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
+// fill an array with random colors
 function generateRandomColors(num) {
   // make an array
   var arr = [];
@@ -74,6 +117,7 @@ function generateRandomColors(num) {
   return arr;
 };
 
+// generate a reandom color
 function randomColor() {
   // pick a "red" from 0 to 255
   var red = Math.floor(Math.random() * 256);
