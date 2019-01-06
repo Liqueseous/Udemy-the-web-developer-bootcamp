@@ -1,0 +1,22 @@
+{
+  "name": "expressroutingassignment1",
+  "version": "1.0.0",
+  "description": "Express Routing Assignment 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
+  },
+  "keywords": [
+    "express",
+    "routing"
+  ],
+  "author": "Ryan DeLosh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
