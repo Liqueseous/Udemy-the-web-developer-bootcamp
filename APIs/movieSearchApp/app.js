@@ -9,17 +9,22 @@ var myPort = 3000;
 // set default page extension to ejs
 app.set('view engine', 'ejs');
 
+// Redirect to search page
 app.get('/', (req, res) => {
   res.redirect('/search');
 });
 
+// search for a movie
 app.get('/search', (req, res) => {
   res.render('search');
 });
 
 // show results of search route
 app.get('/results', (req, res) => {
-  request("http://www.omdbapi.com/?apikey=thewdb&s=star%20wars", (error, response, body) => {
+  var query = req.query.search;
+  var url = "http://www.omdbapi.com/?apikey=thewdb&s=" + query
+  
+  request(url, (error, response, body) => {
     if(!error && response.statusCode == 200){
       var data = JSON.parse(body);
       res.render('results', {data: data});
