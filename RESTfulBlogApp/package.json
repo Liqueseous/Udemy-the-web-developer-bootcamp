@@ -1,13 +1,14 @@
 {
-  "name": "yelpcamp",
+  "name": "restfulblogapp",
   "version": "1.0.0",
-  "description": "Yelp Camp",
+  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
   },
   "author": "Ryan DeLosh",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",

@@ -19,6 +19,8 @@
   </div>
 
   <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+  <!-- campgrounds is an object that contains an array of campground opjects 
+  passed down from the INDEX Route-->
     <% campgrounds.forEach((campground) => { %>
       <div class="col-md-3 col-sm-6">
         <div class="thumbnail">
@@ -26,6 +28,9 @@
           <div class="caption">
             <h4><%= campground.name %></h4>
           </div>
+          <p>
+            <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+          </p>
         </div>     
       </div>
     <% }); %>
